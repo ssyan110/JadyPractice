@@ -26,7 +26,8 @@
 
         /* Pinyin lớn hơn chữ Hán theo yêu cầu */
         .pinyin {
-            font-size: 3rem; /* Tăng cỡ chữ */
+            font-size: 3rem;
+            /* Tăng cỡ chữ */
             font-weight: 800;
             color: #1e40af;
             margin-bottom: 0;
@@ -34,13 +35,15 @@
         }
 
         .hanzi {
-            font-size: 2.25rem; /* Tăng cỡ chữ */
+            font-size: 2.25rem;
+            /* Tăng cỡ chữ */
             color: #4b5563;
         }
 
         .vietnamese-text {
             color: #059669;
-            font-size: 1.75rem; /* Tăng cỡ chữ */
+            font-size: 1.75rem;
+            /* Tăng cỡ chữ */
             font-style: italic;
             font-weight: 500;
         }
@@ -59,12 +62,14 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(0, 0, 0, 0.08);
             text-align: center;
-            padding: 0.75rem; /* Giảm padding */
+            padding: 0.75rem;
+            /* Giảm padding */
             border-radius: 1.25rem;
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            font-size: 1.5rem; /* Tăng cỡ chữ */
+            font-size: 1.5rem;
+            /* Tăng cỡ chữ */
             font-weight: 600;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
             color: #1d1d1f;
@@ -87,7 +92,8 @@
             transition: all 0.2s;
         }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus,
+        select:focus {
             border-color: #0071e3;
             box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
         }
@@ -178,7 +184,8 @@
             <section id="cloze" class="tab-content hidden">
                 <div class="card p-4 md:p-6 mb-4">
                     <h2 class="text-4xl font-bold mb-4 text-blue-800">Điền vào chỗ trống (Cloze Test)</h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Điền từ Hán ngữ thích hợp để hoàn thành câu (sử dụng gợi ý trong ngoặc).</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Điền từ Hán ngữ
+                        thích hợp để hoàn thành câu (sử dụng gợi ý trong ngoặc).</p>
                     <div id="cloze-container" class="space-y-6">
                         <!-- Cloze questions injected by JS -->
                     </div>
@@ -194,7 +201,8 @@
             <section id="trans" class="tab-content hidden">
                 <div class="card p-4 md:p-6 mb-4">
                     <h2 class="text-4xl font-bold mb-4 text-blue-800">Dịch thuật (Việt -> Trung)</h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Viết câu dịch hoặc Pinyin, sau đó mở phần "Xem gợi ý" để đối chiếu.</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Viết câu dịch hoặc
+                        Pinyin, sau đó mở phần "Xem gợi ý" để đối chiếu.</p>
                     <div id="trans-container" class="space-y-6">
                         <!-- Translation questions injected by JS -->
                     </div>
@@ -207,7 +215,8 @@
                     <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
                         <span class="mr-2">💬</span> Nối câu đối thoại
                     </h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Chọn chữ cái (A-H) phù hợp nhất với câu hỏi bên trái.</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Chọn chữ cái (A-H)
+                        phù hợp nhất với câu hỏi bên trái.</p>
                     <div id="dialoguePairs-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div>
                             <div id="dialogue-q-list" class="space-y-4"></div>
@@ -217,7 +226,8 @@
                                     tra kết quả</button>
                             </div>
                         </div>
-                        <div id="dialogue-opt-list" class="space-y-6 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
+                        <div id="dialogue-opt-list"
+                            class="space-y-6 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
                         </div>
                     </div>
                 </div>
@@ -229,7 +239,8 @@
                     <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
                         <span class="mr-2">🎧</span> Nghe 08-2 (Listening and Response)
                     </h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short dialogues and select a correct answer.</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short
+                        dialogues and select a correct answer.</p>
                     <div id="listen082-container" class="space-y-8"></div>
                 </div>
             </section>
@@ -240,7 +251,8 @@
                     <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
                         <span class="mr-2">🎧</span> Nghe 08-3 (True/False)
                     </h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the dialogue. Mark O if true and X if false.</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the
+                        dialogue. Mark O if true and X if false.</p>
                     <div id="listen083-container" class="space-y-6"></div>
                     <div class="mt-8 text-center">
                         <button onclick="checkListen083()"
@@ -256,7 +268,8 @@
                     <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
                         <span class="mr-2">🎧</span> Nghe 08-4 (Listening to Short Story)
                     </h2>
-                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short story and select a correct answer.</p>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short
+                        story and select a correct answer.</p>
                     <div id="listen084-container" class="space-y-8"></div>
                 </div>
             </section>
@@ -843,7 +856,7 @@
                 const div = document.createElement('div');
                 div.className = "flex items-center gap-5 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
                 div.innerHTML = `
-                    <select data-id="${q.id}" data-ans="${q.ans}" class="border-2 border-blue-200 rounded-xl p-4 text-4xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-28 text-center cursor-pointer flex-shrink-0 bg-blue-50/30 hover:bg-white transition-colors">
+                    <select data-id="${q.id}" data-ans="${q.ans}" onchange="updateDialogueOptions()" class="border-2 border-blue-200 rounded-xl p-4 text-4xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-28 text-center cursor-pointer flex-shrink-0 bg-blue-50/30 hover:bg-white transition-colors">
                         <option value=""></option>
                         ${dialoguePairsData.options.map(opt => `<option value="${opt.letter}">${opt.letter}</option>`).join('')}
                     </select>
@@ -857,7 +870,8 @@
 
             dialoguePairsData.options.forEach(opt => {
                 const div = document.createElement('div');
-                div.className = "mb-5 flex gap-5 bg-white p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
+                div.className = "dialogue-opt-item mb-5 flex gap-5 bg-white p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300";
+                div.setAttribute('data-letter', opt.letter);
                 div.innerHTML = `
                     <span class="text-5xl text-blue-700 font-extrabold flex-shrink-0 mt-1">${opt.letter}.</span>
                     <div class="flex flex-col flex-1">
@@ -866,6 +880,23 @@
                     </div>
                 `;
                 optList.appendChild(div);
+            });
+        }
+
+        function updateDialogueOptions() {
+            const selects = document.querySelectorAll('#dialogue-q-list select');
+            const selectedLetters = Array.from(selects).map(s => s.value).filter(v => v !== "");
+            
+            const optionItems = document.querySelectorAll('#dialogue-opt-list .dialogue-opt-item');
+            optionItems.forEach(item => {
+                const letter = item.getAttribute('data-letter');
+                if (selectedLetters.includes(letter)) {
+                    item.classList.add('opacity-40', 'bg-gray-100', 'grayscale', 'scale-95');
+                    item.classList.remove('bg-white', 'shadow-[0_2px_8px_rgba(0,0,0,0.04)]');
+                } else {
+                    item.classList.remove('opacity-40', 'bg-gray-100', 'grayscale', 'scale-95');
+                    item.classList.add('bg-white', 'shadow-[0_2px_8px_rgba(0,0,0,0.04)]');
+                }
             });
         }
 
