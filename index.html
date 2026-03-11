@@ -854,15 +854,15 @@
 
             dialoguePairsData.questions.forEach((q, idx) => {
                 const div = document.createElement('div');
-                div.className = "flex items-center gap-5 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
+                div.className = "flex items-center gap-4 bg-white p-3 rounded-xl shadow-sm border border-gray-100 mb-3 shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
                 div.innerHTML = `
-                    <select data-id="${q.id}" data-ans="${q.ans}" onchange="updateDialogueOptions()" class="border-2 border-blue-200 rounded-xl p-4 text-4xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-28 text-center cursor-pointer flex-shrink-0 bg-blue-50/30 hover:bg-white transition-colors">
+                    <select data-id="${q.id}" data-ans="${q.ans}" onchange="updateDialogueOptions()" class="border-2 border-blue-200 rounded-lg p-2 text-2xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-20 text-center cursor-pointer flex-shrink-0 bg-blue-50/30 hover:bg-white transition-colors flex-shrink-0">
                         <option value=""></option>
                         ${dialoguePairsData.options.map(opt => `<option value="${opt.letter}">${opt.letter}</option>`).join('')}
                     </select>
-                    <div class="flex flex-col flex-1 pl-3">
-                        <span class="text-4xl font-bold text-blue-900 tracking-wide mb-2 leading-relaxed">${q.p}</span>
-                        <span class="text-2xl text-slate-500">${q.h}</span>
+                    <div class="flex flex-col flex-1 pl-2">
+                        <span class="text-2xl font-bold text-blue-900 tracking-tight leading-snug">${q.p}</span>
+                        <span class="text-xl text-slate-500">${q.h}</span>
                     </div>
                 `;
                 qList.appendChild(div);
@@ -870,13 +870,13 @@
 
             dialoguePairsData.options.forEach(opt => {
                 const div = document.createElement('div');
-                div.className = "dialogue-opt-item mb-5 flex gap-5 bg-white p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300";
+                div.className = "dialogue-opt-item mb-3 flex gap-3 bg-white p-4 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300";
                 div.setAttribute('data-letter', opt.letter);
                 div.innerHTML = `
-                    <span class="text-5xl text-blue-700 font-extrabold flex-shrink-0 mt-1">${opt.letter}.</span>
+                    <span class="text-3xl text-blue-700 font-extrabold flex-shrink-0 mt-0.5">${opt.letter}.</span>
                     <div class="flex flex-col flex-1">
-                        <span class="text-3xl font-bold text-blue-800 tracking-wide mb-2 leading-relaxed">${opt.p}</span>
-                        <span class="text-2xl text-slate-500">${opt.h}</span>
+                        <span class="text-2xl font-bold text-blue-800 tracking-tight leading-snug">${opt.p}</span>
+                        <span class="text-xl text-slate-500">${opt.h}</span>
                     </div>
                 `;
                 optList.appendChild(div);
