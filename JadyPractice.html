@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8: Học Công Phu - Review App Full Vocab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #f5f5f7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .chinese-ruby {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+            margin: 0 2px;
+            vertical-align: bottom;
+        }
+
+        /* Pinyin lớn hơn chữ Hán theo yêu cầu */
+        .pinyin {
+            font-size: 3rem; /* Tăng cỡ chữ */
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+
+        .hanzi {
+            font-size: 2.25rem; /* Tăng cỡ chữ */
+            color: #4b5563;
+        }
+
+        .vietnamese-text {
+            color: #059669;
+            font-size: 1.75rem; /* Tăng cỡ chữ */
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-choice {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            padding: 0.75rem; /* Giảm padding */
+            border-radius: 1.25rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            font-size: 1.5rem; /* Tăng cỡ chữ */
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
+            color: #1d1d1f;
+        }
+
+        .btn-choice:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            background-color: rgba(239, 246, 255, 0.8);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-selected {
+            border-color: #3b82f6;
+            background-color: #3b82f6;
+            color: white !important;
+        }
+
+        .tab-btn {
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #0071e3;
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+        }
+    </style>
+</head>
+
+<body class="p-2 md:p-4">
+
+    <div class="max-w-[95%] mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-6xl font-extrabold text-slate-800 uppercase">Học Tiếng Trung - Bài 8</h1>
+            <h2 class="text-4xl font-bold text-blue-600 mt-2">HỌC CÔNG PHU (學功夫)</h2>
+            <p class="text-slate-500 mt-3 text-2xl">Toàn bộ 21 từ vựng & bài tập thực hành</p>
+        </header>
+
+        <!-- Navigation Dropdown -->
+        <div class="relative max-w-xl mx-auto mb-8">
+            <select id="section-select" onchange="showTab(this.value)"
+                class="block appearance-none w-full bg-white/90 backdrop-blur-xl border border-gray-200/50 text-gray-800 py-4 px-6 pr-10 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-500/20 text-2xl font-bold transition-all cursor-pointer">
+                <option value="vocab">Trắc nghiệm Từ vựng</option>
+                <option value="match">Nối từ</option>
+                <option value="grammar">Ngữ pháp</option>
+                <option value="cloze">Điền từ</option>
+                <option value="trans">Dịch câu</option>
+                <option value="dialoguePairs">Nối Đối Thoại</option>
+                <option value="listen082">Nghe 08-2</option>
+                <option value="listen083">Nghe 08-3</option>
+                <option value="listen084">Nghe 08-4</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-blue-600">
+                <svg class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <main id="main-content">
+
+            <!-- VOCABULARY SECTION (Full 21 items) -->
+            <section id="vocab" class="tab-content">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">📝</span> Trắc nghiệm từ vựng (21 từ)
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">
+                        Hướng dẫn: Hãy nhìn Pinyin và Chữ Hán, sau đó chọn nghĩa tiếng Việt đúng.
+                    </p>
+
+                    <div id="vocab-container" class="space-y-10">
+                        <!-- Vocabulary will be injected here via JavaScript for better organization -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- MATCHING SECTION -->
+            <section id="match" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-3xl font-bold mb-4 text-blue-800">Bài tập Nối từ (連連看)</h2>
+                    <p class="text-slate-500 text-xl mb-4 italic">Chọn 1 từ bên trái và 1 nghĩa bên phải tương ứng.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div id="chinese-list" class="flex flex-col gap-2">
+                            <!-- Left list injected by JS -->
+                        </div>
+                        <div id="vn-list" class="flex flex-col gap-2">
+                            <!-- Right list injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GRAMMAR SECTION -->
+            <section id="grammar" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">📚</span> Ngữ pháp (Toàn bộ 7 điểm cấu trúc)
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Chọn đáp án
+                        đúng nhất điền vào chỗ trống cho mỗi phần ngữ pháp:</p>
+                    <div id="grammar-container" class="space-y-4">
+                        <!-- Grammar questions injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- CLOZE SECTION -->
+            <section id="cloze" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800">Điền vào chỗ trống (Cloze Test)</h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Điền từ Hán ngữ thích hợp để hoàn thành câu (sử dụng gợi ý trong ngoặc).</p>
+                    <div id="cloze-container" class="space-y-6">
+                        <!-- Cloze questions injected by JS -->
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button onclick="checkCloze()"
+                            class="bg-blue-600 text-white text-2xl px-12 py-4 rounded-full font-bold shadow-lg hover:bg-blue-700 transition-colors">Kiểm
+                            tra kết quả</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRANSLATION SECTION -->
+            <section id="trans" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800">Dịch thuật (Việt -> Trung)</h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Viết câu dịch hoặc Pinyin, sau đó mở phần "Xem gợi ý" để đối chiếu.</p>
+                    <div id="trans-container" class="space-y-6">
+                        <!-- Translation questions injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIALOGUE PAIRS SECTION -->
+            <section id="dialoguePairs" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">💬</span> Nối câu đối thoại
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Chọn chữ cái (A-H) phù hợp nhất với câu hỏi bên trái.</p>
+                    <div id="dialoguePairs-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <div id="dialogue-q-list" class="space-y-4"></div>
+                            <div class="mt-8 text-center md:text-left">
+                                <button onclick="checkDialoguePairs()"
+                                    class="bg-blue-600 text-white text-2xl px-12 py-4 rounded-full font-bold shadow-lg hover:bg-blue-700 transition-colors">Kiểm
+                                    tra kết quả</button>
+                            </div>
+                        </div>
+                        <div id="dialogue-opt-list" class="space-y-6 bg-gray-50/50 p-6 rounded-xl border border-gray-100">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LISTEN 08-2 SECTION -->
+            <section id="listen082" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">🎧</span> Nghe 08-2 (Listening and Response)
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short dialogues and select a correct answer.</p>
+                    <div id="listen082-container" class="space-y-8"></div>
+                </div>
+            </section>
+
+            <!-- LISTEN 08-3 SECTION -->
+            <section id="listen083" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">🎧</span> Nghe 08-3 (True/False)
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the dialogue. Mark O if true and X if false.</p>
+                    <div id="listen083-container" class="space-y-6"></div>
+                    <div class="mt-8 text-center">
+                        <button onclick="checkListen083()"
+                            class="bg-blue-600 text-white text-2xl px-12 py-4 rounded-full font-bold shadow-lg hover:bg-blue-700 transition-colors">Kiểm
+                            tra kết quả</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LISTEN 08-4 SECTION -->
+            <section id="listen084" class="tab-content hidden">
+                <div class="card p-4 md:p-6 mb-4">
+                    <h2 class="text-4xl font-bold mb-4 text-blue-800 flex items-center">
+                        <span class="mr-2">🎧</span> Nghe 08-4 (Listening to Short Story)
+                    </h2>
+                    <p class="vietnamese-text mb-6 border-l-4 border-blue-500 pl-4 bg-blue-50 py-3">Listen to the short story and select a correct answer.</p>
+                    <div id="listen084-container" class="space-y-8"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Feedback -->
+        <div id="feedback"
+            class="fixed bottom-10 right-10 hidden p-6 text-xl rounded-xl shadow-2xl text-white font-bold transition-all transform scale-110">
+        </div>
+    </div>
+
+    <script>
+        // DATA OBJECTS
+        const vocabList = [
+            { p: "gōngfu", h: "功夫", v: "Công phu, võ thuật", options: ["Công nhân", "Thời gian", "Công phu, võ thuật", "Học tập"] },
+            { p: "jiào", h: "叫", v: "Gọi", options: ["Tên", "Gọi", "Hét", "Chào"] },
+            { p: "jiàn", h: "見", v: "Thấy", options: ["Thấy", "Đọc", "Hiểu", "Nghe"] },
+            { p: "tuī", h: "推", v: "Đẩy", options: ["Kéo", "Đẩy", "Cầm", "Vứt"] },
+            { p: "tǐyùguǎn", h: "體育館", v: "Nhà thi đấu, phòng gym", options: ["Sân đá banh", "Nhà thi đấu, phòng gym", "Thư viện", "Trường học"] },
+            { p: "tàijíquán", h: "太極拳", v: "Thái Cực Quyền", options: ["Thiếu Lâm", "Thái Cực Quyền", "Võ cổ truyền", "Kiếm pháp"] },
+            { p: "shīfu", h: "師父", v: "Sư phụ, thầy dạy võ", options: ["Thầy giáo", "Bác sĩ", "Sư phụ, thầy dạy võ", "Đại sư"] },
+            { p: "tiānfèn", h: "天分", v: "Thiên phú, tài năng", options: ["Điểm số", "Thời tiết", "Thiên phú, tài năng", "Học bổng"] },
+            { p: "dǒng", h: "懂", v: "Hiểu", options: ["Biết", "Nghe", "Đọc", "Hiểu"] },
+            { p: "qǐlái", h: "起來", v: "Dậy, ngủ dậy", options: ["Đi lại", "Dậy, ngủ dậy", "Leo lên", "Ngồi xuống"] },
+            { p: "dòngzuò", h: "動作", v: "Động tác", options: ["Công việc", "Hành động", "Động tác", "Thực hành"] },
+            { p: "qīng", h: "輕", v: "Nhẹ", options: ["Nặng", "Nhanh", "Chậm", "Nhẹ"] },
+            { p: "tuǐ", h: "腿", v: "Cái chân/đùi", options: ["Cái chân/đùi", "Cánh tay", "Cái lưng", "Bàn tay"] },
+            { p: "liǎo", h: "了", v: "Bổ ngữ khả năng", options: ["Rồi", "Của", "Bổ ngữ khả năng", "Trạng thái"] },
+            { p: "xiàqù", h: "...下去", v: "Tiếp tục...", options: ["Chạy xuống", "Về sau", "Tiếp tục...", "Biến mất"] },
+            { p: "xìngqù", h: "興趣", v: "Sở thích", options: ["Thú vị", "Thói quen", "Sở thích", "Vui vẻ"] },
+            { p: "jiè", h: "借", v: "Mượn", options: ["Trả", "Mượn", "Thuê", "Mua"] },
+            { p: "yǒu tiānfèn", h: "有天分", v: "Có tài năng", options: ["Có thời gian", "Có bạn bè", "Có tài năng", "Có điểm tốt"] },
+            { p: "xué huì", h: "學會", v: "Học được, thành thạo", options: ["Đi học", "Học được, thành thạo", "Dạy học", "Trường học"] },
+            { p: "qǐ bù lái", h: "起不來", v: "Không dậy nổi", options: ["Không ngủ được", "Không dậy nổi", "Không đi được", "Không ngồi được"] },
+            { p: "zǒu bù liǎo lù", h: "走不了路", v: "Không đi bộ nổi", options: ["Không chạy được", "Không đi bộ nổi", "Không về được", "Không leo được"] }
+            // { p: "hǎochù", h: "好處", v: "Lợi ích", options: ["Chỗ tốt", "Lợi ích", "Kết quả", "Tương lai"] },
+            // { p: "bàoyuàn", h: "抱怨", v: "Phàn nàn", options: ["Cảm ơn", "Xin lỗi", "Phàn nàn", "Khóc"] },
+            // { p: "gōngchǐ", h: "公尺", v: "Mét", options: ["Ki-lô-mét", "Mét", "Dặm", "Gang tay"] },
+            // { p: "zǒngshì", h: "總是", v: "Luôn luôn", options: ["Thường xuyên", "Hiếm khi", "Luôn luôn", "Bình thường"] },
+            // { p: "wán", h: "完", v: "Xong, kết thúc", options: ["Bắt đầu", "Xong, kết thúc", "Cố gắng", "Chờ đợi"] },
+            // { p: "tǐlì", h: "體力", v: "Thể lực", options: ["Cơ thể", "Thể thao", "Thể lực", "Cân nặng"] },
+            // { p: "zhěngtiān", h: "整天", v: "Cả ngày", options: ["Nửa ngày", "Sáng sớm", "Cả đêm", "Cả ngày"] },
+            // { p: "jīngshén", h: "精神", v: "Năng lượng, tinh thần", options: ["Linh hồn", "Năng lượng, tinh thần", "Sức khỏe", "Mệt mỏi"] },
+            // { p: "běnlái", h: "本來", v: "Ban đầu, vốn dĩ", options: ["Sau này", "Ban đầu, vốn dĩ", "Thực sự", "Có lẽ"] },
+            // { p: "kěnéng", h: "可能", v: "Có lẽ, khả năng", options: ["Chắc chắn", "Tuyệt đối", "Không thể", "Có lẽ, khả năng"] },
+            // { p: "huí", h: "回", v: "Về, quay lại", options: ["Đi", "Về, quay lại", "Ở lại", "Vòng quanh"] },
+            // { p: "yǐngxiǎng", h: "影響", v: "Ảnh hưởng", options: ["Thay đổi", "Ảnh hưởng", "Phát triển", "Tham gia"] },
+            // { p: "shēntǐ", h: "身體", v: "Thân thể, sức khỏe", options: ["Thân thể, sức khỏe", "Khuôn mặt", "Quần áo", "Gia đình"] },
+            // { p: "liàn", h: "練", v: "Luyện tập", options: ["Chơi", "Học", "Luyện tập", "Nghiên cứu"] },
+            // { p: "xiǎngqǐ", h: "想起", v: "Nhớ lại", options: ["Suy nghĩ", "Quên mất", "Nhớ lại", "Tìm thấy"] }
+        ];
+
+        const matchPairs = [
+            { id: 1, c: "tuǐ", h: "腿", v: "Cái chân" },
+            { id: 2, c: "xìngqù", h: "興趣", v: "Sở thích" },
+            { id: 3, c: "qǐ bù lái", h: "起不來", v: "Không dậy nổi" },
+            { id: 4, c: "jiè shū", h: "借書", v: "Mượn sách" },
+            // { id: 5, c: "hǎochù", h: "好處", v: "Lợi ích" },
+            // { id: 6, c: "liàn", h: "練", v: "Luyện tập" },
+            { id: 7, c: "tuī", h: "推", v: "Đẩy" }
+            // { id: 8, c: "zhěngtiān", h: "整天", v: "Cả ngày" },
+            // { id: 9, c: "kěnéng", h: "可能", v: "Có lẽ" },
+            // { id: 10, c: "yǐngxiǎng", h: "影響", v: "Ảnh hưởng" }
+        ];
+
+        const grammarSections = [
+            {
+                title: "I. 見 jiàn as a Perceptual Result",
+                desc: "Diễn tả kết quả của nhận thức thị giác hoặc thính giác.",
+                questions: [
+                    {
+                        vn: "1. Hôm qua tôi đã (nhìn thấy) Tiểu Mỹ ở chợ đêm.",
+                        pinyin: "Zuótiān wǒ zài yèshì kàn... Xiǎoměi le.",
+                        zh: "昨天我在夜市看...小美了。",
+                        options: [{ p: "jiàn", h: "見", c: true }, { p: "dǒng", h: "懂", c: false }]
+                    },
+                    // { 
+                    //     vn: "2. Tại sao bạn lại tìm quyển sách đó? Chúng tôi đều (nhìn thấy) bạn lấy đi rồi.",
+                    //     pinyin: "Wèishéme nǐ zài zhǎo nà běn shū? Wǒmen dōu kàn... nǐ ná zǒu le.",
+                    //     zh: "為什麼你在找那本書？我們都看...你拿走了。",
+                    //     options: [{ p: "wán", h: "完", c: false }, { p: "jiàn", h: "見", c: true }] 
+                    // },
+                    {
+                        vn: "3. Xin hãy nói lại lần nữa. Tôi không (nghe thấy).",
+                        pinyin: "Qǐng zài shuō yí cì. Wǒ méi tīng....",
+                        zh: "請再說一次。我沒聽...。",
+                        options: [{ p: "jiàn", h: "見", c: true }, { p: "huì", h: "會", c: false }]
+                    }
+                ]
+            },
+            {
+                title: "II. 懂 dǒng as a Cognitive Result",
+                desc: "Diễn tả kết quả của nhận thức: hiểu.",
+                questions: [
+                    {
+                        vn: "1. Những lời thầy giáo nói, tôi đều (nghe hiểu) hết.",
+                        pinyin: "Lǎoshī shuō de huà, wǒ dōu tīng... le.",
+                        zh: "老師說的話，我都聽...了。",
+                        options: [{ p: "dǒng", h: "懂", c: true }, { p: "jiàn", h: "見", c: false }]
+                    },
+                    {
+                        vn: "2. Bài tập thầy giao hôm nay, bạn có (xem hiểu) không?",
+                        pinyin: "Lǎoshī jīntiān gěi de gōngkè, nǐ kàn... le ma?",
+                        zh: "老師今天給的功課，你看...了嗎？",
+                        options: [{ p: "huì", h: "會", c: false }, { p: "dǒng", h: "懂", c: true }]
+                    },
+                    // { 
+                    //     vn: "3. Anh ấy rốt cuộc đã nói cái gì? Tôi hoàn toàn không (nghe hiểu).",
+                    //     pinyin: "Tā dàodǐ shuō le shénme? Wǒ wánquán méi tīng....",
+                    //     zh: "他到底說了什麼？我完全沒聽...。",
+                    //     options: [{ p: "dǒng", h: "懂", c: true }, { p: "wán", h: "完", c: false }] 
+                    // }
+                ]
+            },
+            {
+                title: "III. 會 huì as an Achievement Result",
+                desc: "Diễn tả kết quả đạt được (nắm vững/thành thạo một kỹ năng).",
+                questions: [
+                    {
+                        vn: "1. Hồi học đại học, tôi đã (học được) cách lái xe.",
+                        pinyin: "Wǒ zài dàxué de shíhòu xué... zěnme kāichē le.",
+                        zh: "我在大學的時候學...怎麼開車了。",
+                        options: [{ p: "huì", h: "會", c: true }, { p: "dǒng", h: "懂", c: false }]
+                    },
+                    {
+                        vn: "2. Học sinh đã (học được) cách dùng tiếng Trung để giới thiệu bản thân rồi.",
+                        pinyin: "Xuéshēng yǐjīng xué... yòng Zhōngwén jièshào zìjǐ le.",
+                        zh: "學生已經學...用中文介紹自己了。",
+                        options: [{ p: "jiàn", h: "見", c: false }, { p: "huì", h: "會", c: true }]
+                    },
+                    // { 
+                    //     vn: "3. Tôi học bơi đã một tuần mà vẫn chưa (biết) bơi.",
+                    //     pinyin: "Wǒ xué yóuyǒng xué le yí ge lǐbài, hái méi xué....",
+                    //     zh: "我學游泳學了一個禮拜，還沒學...。",
+                    //     options: [{ p: "huì", h: "會", c: true }, { p: "wán", h: "完", c: false }] 
+                    // }
+                ]
+            },
+            {
+                title: "IV. Potential Capability with 得 de or 不 bù",
+                desc: "Bổ ngữ khả năng, chèn 得 hoặc 不 vào giữa động từ và bổ ngữ chỉ kết quả/phương hướng.",
+                questions: [
+                    {
+                        vn: "1. Nhạc của xe rác tuy nhỏ, nhưng tôi vẫn (nghe thấy được).",
+                        pinyin: "Lèsè chē de yīnyuè suīrán hěn xiǎo, dànshì wǒ tīng... jiàn.",
+                        zh: "垃圾車的音樂雖然很小，但是我聽...見。",
+                        options: [{ p: "de", h: "得", c: true }, { p: "bù", h: "不", c: false }]
+                    },
+                    {
+                        vn: "2. Thái Cực Quyền quá khó, tôi (học không được).",
+                        pinyin: "Tàijíquán tài nán le, wǒ xué... huì.",
+                        zh: "太極拳太難了，我學...會。",
+                        options: [{ p: "de", h: "得", c: false }, { p: "bù", h: "不", c: true }]
+                    },
+                    {
+                        vn: "3. Chữ trên quảng cáo nhỏ quá. Bạn có (nhìn thấy được) không?",
+                        pinyin: "Guǎnggào shàng de zì nàme xiǎo. Nǐ kàn... jiàn ma?",
+                        zh: "廣告上的字那麼小。你看...見嗎？",
+                        options: [{ p: "bù", h: "不", c: false }, { p: "de", h: "得", c: true }]
+                    },
+                    {
+                        vn: "4. Sáng tám giờ, tôi dĩ nhiên là (dậy nổi).",
+                        pinyin: "Zǎoshang bā diǎn, wǒ dāngrán qǐ... lái.",
+                        zh: "早上八點，我當然起...來。",
+                        options: [{ p: "de", h: "得", c: true }, { p: "bù", h: "不", c: false }]
+                    },
+                    {
+                        vn: "5. Nửa đêm ba giờ quá sớm, chả ai (dậy nổi).",
+                        pinyin: "Bànyè sān diǎn tài zǎo le, shéi yě qǐ... lái.",
+                        zh: "半夜三點太早了，誰也起...來。",
+                        options: [{ p: "de", h: "得", c: false }, { p: "bù", h: "不", c: true }]
+                    }
+                ]
+            },
+            {
+                title: "V. Capability Complement 了 liǎo",
+                desc: "Là một bổ ngữ khả năng đặc biệt, dùng chỉ việc có thể đạt được kết quả hay không.",
+                questions: [
+                    // { 
+                    //     vn: "1. Tô mì bò này, một mình tôi (có thể ăn hết).",
+                    //     pinyin: "Zhè wǎn niúròu miàn, wǒ yí ge rén chī de....",
+                    //     zh: "這碗牛肉麵，我一個人吃得...。",
+                    //     options: [{ p: "liǎo", h: "了", c: true }, { p: "wán", h: "完", c: false }] 
+                    // },
+                    {
+                        vn: "2. Nhiều sách thế này, tôi (cầm không nổi).",
+                        pinyin: "Zhème duō shū, wǒ ná bù....",
+                        zh: "這麼多書，我拿不...。",
+                        options: [{ p: "qǐ", h: "起", c: false }, { p: "liǎo", h: "了", c: true }]
+                    },
+                    {
+                        vn: "3. Bão đến rồi, tiệc tối nay chúng ta (không đi được).",
+                        pinyin: "Táifēng lái le, jīntiān wǎnshàng de xǐyàn wǒmen qù bu... le.",
+                        zh: "颱風來了，今天晚上的喜宴我們去不...了。",
+                        options: [{ p: "liǎo", h: "了", c: true }, { p: "jiàn", h: "見", c: false }]
+                    },
+                    {
+                        vn: "4. Nửa đêm ồn quá, nhạc đập (ầm ầm). Nó (có ngủ được không)?",
+                        pinyin: "Nàme chǎo, tā shuì de... shuì bu...?",
+                        zh: "那麼吵，他睡得...睡不...？",
+                        options: [{ p: "jiàn", h: "見", c: false }, { p: "zháo", h: "著", c: true }]
+                    }
+                ]
+            },
+            {
+                title: "VI. Vs + 得 de + complement (so...that...)",
+                desc: "Mẫu câu chỉ mức độ dẫn đến một kết quả (đến nỗi mà...).",
+                questions: [
+                    {
+                        vn: "1. Tôi thường xuyên mệt (đến mức) không dậy nổi.",
+                        pinyin: "Wǒ chángcháng lèi... qǐ bù lái.",
+                        zh: "我常常累...起不來。",
+                        options: [{ p: "le", h: "了", c: false }, { p: "de", h: "得", c: true }]
+                    },
+                    {
+                        vn: "2. Trời lạnh (đến nỗi) nhiều người không muốn đi làm.",
+                        pinyin: "Tiānqì lěng... hěn duō rén bù xiǎng qù shàngbān.",
+                        zh: "天氣冷...很多人不想去上班。",
+                        options: [{ p: "de", h: "得", c: true }, { p: "bù", h: "不", c: false }]
+                    },
+                    {
+                        vn: "3. Anh ta mua nhiều đồ (đến mức) xách không nổi.",
+                        pinyin: "Tā mǎi le hěn duō dōngxī, duō... ná bù liǎo.",
+                        zh: "他買了很多東西，多...拿不了。",
+                        options: [{ p: "de", h: "得", c: true }, { p: "de", h: "的", c: false }]
+                    }
+                ]
+            },
+            {
+                title: "VII. To Keep on Doing Something with 下去 xiàqù",
+                desc: "Hành động tiếp diễn, tiếp tục.",
+                questions: [
+                    {
+                        vn: "1. Bạn nói rất hay, xin mời (nói tiếp).",
+                        pinyin: "Nǐ shuō de hěn hǎo, qǐng nǐ zài shuō....",
+                        zh: "你說得很好，請你再說...。",
+                        options: [{ p: "xiàlái", h: "下來", c: false }, { p: "xiàqù", h: "下去", c: true }]
+                    },
+                    {
+                        vn: "2. Học phí cho dù đắt, nhưng tôi vẫn muốn (học tiếp).",
+                        pinyin: "Suīrán xuéfèi bù piányí, dànshì wǒ háishì xiǎng niàn....",
+                        zh: "雖然學費不便宜，但是我還是想念...。",
+                        options: [{ p: "qǐlái", h: "起來", c: false }, { p: "xiàqù", h: "下去", c: true }]
+                    },
+                    // { 
+                    //     vn: "3. Gần đây ồn quá, tôi không muốn (ở tiếp).",
+                    //     pinyin: "Zhè fùjìn tài chǎo le, wǒ bù xiǎng zhù....",
+                    //     zh: "這附近太吵了，我不想住...。",
+                    //     options: [{ p: "xiàqù", h: "下去", c: true }, { p: "wán", h: "完", c: false }] 
+                    // }
+                ]
+            },
+            // {
+            //     title: "VIII. Completion of Action with 完 wán",
+            //     desc: "Biểu thị hành động đã kết thúc, hoàn thành.",
+            //     questions: [
+            //         { 
+            //             vn: "1. Bọn họ đã (uống xong) cà phê rồi.",
+            //             pinyin: "Tāmen yǐjīng hē... kāfēi le.",
+            //             zh: "他們已經喝...咖啡了。",
+            //             options: [{ p: "wán", h: "完", c: true }, { p: "huì", h: "會", c: false }] 
+            //         },
+            //         { 
+            //             vn: "2. Lương tháng này, tôi đã (dùng hết) rồi.",
+            //             pinyin: "Zhège yuè de xīnshuǐ, wǒ dōu yòng... le.",
+            //             zh: "這個月的薪水，我都用...了。",
+            //             options: [{ p: "liǎo", h: "了", c: false }, { p: "wán", h: "完", c: true }] 
+            //         },
+            //         { 
+            //             vn: "3. Đừng mua trái cây nữa, trái cây ở nhà còn chưa (ăn hết) đâu!",
+            //             pinyin: "Bié mǎi shuǐguǒ le, jiālǐ de shuǐguǒ hái méi chī... ne!",
+            //             zh: "別買水果了，家裡的水果還沒吃...呢！",
+            //             options: [{ p: "wán", h: "完", c: true }, { p: "jiàn", h: "見", c: false }] 
+            //         }
+            //     ]
+            // }
+        ];
+
+        const clozeQs = [
+            { id: 1, p: "Wǒ xué le sān ge yuè, cái ___ le.", h: "我學了三個月，才 ___ 了。", ans: "學會", p_ans: "xuehui", hint: "Thành thạo" },
+            { id: 2, p: "Tā lèi de ___.", h: "他累得 ___ 。", ans: "起不來", p_ans: "qibulai", hint: "Không dậy nổi" },
+            { id: 3, p: "Yīnyuè nàme chǎo, wǒ ___ nǐ jiào wǒ.", h: "音樂那麼吵，我 ___ 你叫我。", ans: "聽不見", p_ans: "tingbujian", hint: "Không nghe thấy" },
+            { id: 4, p: "Lǎoshī shuō de huà, nǐ ___ le ma?", h: "老師說的話，你 ___ 了嗎？", ans: "聽懂", p_ans: "tingdong", hint: "Nghe hiểu" },
+            { id: 5, p: "Zhè běn shū tài nán, wǒ ___.", h: "這本書太難，我 ___ 。", ans: "看不懂", p_ans: "kanbudong", hint: "Không đọc hiểu" },
+            { id: 6, p: "Wǒ gāng dào ménkǒu, jiù ___ tā.", h: "我剛到門口，就 ___ 他。", ans: "看見", p_ans: "kanjian", hint: "Nhìn thấy" },
+            { id: 7, p: "Cài tài duō le, wǒ yí ge rén ___.", h: "菜太多了，我一個人 ___ 。", ans: "吃不了", p_ans: "chibuliao", hint: "Ăn không hết" },
+            { id: 8, p: "Míngtiān yǒu kǎoshì, nǐ hái xiǎng ___ ma?", h: "明天有考試，你還想 ___ 嗎？", ans: "念下去", p_ans: "nianxiaqu", hint: "Học tiếp" },
+            { id: 9, p: "Gōngkè tā hái méi ___.", h: "功課他還沒 ___ 。", ans: "做完", p_ans: "zuowan", hint: "Làm xong" },
+            { id: 10, p: "Táifēng lái le, jīntiān wǒmen ___.", h: "颱風來了，今天我們 ___ 。", ans: "去不了", p_ans: "qubuliao", hint: "Không đi được" }
+        ];
+
+        const transQs = [
+            { vn: "1. Bọn họ đã uống xong cà phê rồi.", zh: "他們已經喝完咖啡了。", p: "Tāmen yǐjīng hē wán kāfēi le." },
+            { vn: "2. Sách bạn cho tôi mượn, tôi đều đọc xong rồi.", zh: "你借給我的書，我都看完了。", p: "Nǐ jiè gěi wǒ de shū, wǒ dōu kàn wán le." },
+            { vn: "3. Hôm qua tôi ở chợ đêm nhìn thấy Tiểu Mỹ rồi.", zh: "昨天我在夜市看見小美了。", p: "Zuótiān wǒ zài yèshì kànjiàn Xiǎoměi le." },
+            { vn: "4. Balo của tôi, bạn có nhìn thấy không?", zh: "我的背包，你看見了沒有？", p: "Wǒ de bēibāo, nǐ kànjiàn le méiyǒu?" },
+            { vn: "5. Những lời cô giáo nói, tôi đều nghe hiểu rồi.", zh: "老師說的，我都聽懂了。", p: "Lǎoshī shuō de, wǒ dōu tīng dǒng le." },
+            { vn: "6. Tiếng Anh anh ấy nói với cô giáo, bạn nghe hiểu không?", zh: "他跟老師說的英文，你聽懂了嗎？", p: "Tā gēn lǎoshī shuō de Yīngwén, nǐ tīng dǒng le ma?" },
+            { vn: "7. Tôi học bơi mới học được một tuần lễ, vẫn chưa học được.", zh: "我學游泳只學了一個禮拜，還沒學會。", p: "Wǒ xué yóuyǒng zhǐ xué le yí ge lǐbài, hái méi xuéhuì." },
+            { vn: "8. Học sinh đã học được cách dùng tiếng Trung tự giới thiệu bản thân.", zh: "學生學會了用中文介紹自己。", p: "Xuéshēng xuéhuì le yòng Zhōngwén jièshào zìjǐ." },
+            { vn: "9. Chúng ta đi dạo chợ đêm rất lâu rồi, bạn còn muốn dạo tiếp không?", zh: "我們在夜市逛了很久了，你還要逛下去嗎？", p: "Wǒmen zài yèshì guàng le hěn jiǔ le, nǐ hái yào guàng xiàqù ma?" },
+            { vn: "10. Công việc này không tệ, mặc dù lương tiền ít, nhưng tôi vẫn muốn làm tiếp.", zh: "這份工作不錯，雖然薪水少，可是我還要做下去。", p: "Zhè fèn gōngzuò búcuò, suīrán xīnshuǐ shǎo, kěshì wǒ hái yào zuò xiàqù." },
+            { vn: "11. Tôi không nghe thấy anh ấy nói gì.", zh: "我沒聽見他說什麼。", p: "Wǒ méi tīngjiàn tā shuō shénme." },
+            { vn: "12. Bộ phim đó lần đầu tiên tôi xem không hiểu, lần thứ hai xem hiểu rồi.", zh: "那個電影我第一次沒看懂，第二次看懂了。", p: "Nàge diànyǐng wǒ dì yì cī méi kàn dǒng, dì èr cī kàn dǒng le." },
+            { vn: "13. Lúc ở đại học tôi đã học được cách lái xe.", zh: "我在大學的時候學會怎麼開車。", p: "Wǒ zài dàxué de shíhòu xuéhuì zěnme kāichē." },
+            { vn: "14. Tôi học bơi mới học có 3 ngày, vẫn chưa biết bơi.", zh: "我學遊泳只學了三天，還沒學會。", p: "Wǒ xué yóuyǒng zhǐ xué le sān tiān, hái méi xuéhuì." },
+            { vn: "15. 8 giờ sáng, tôi dĩ nhiên thức dậy được.", zh: "早上八點，我當然起得來。", p: "Zǎoshang bā diǎn, wǒ dāngrán qǐ de lái." },
+            { vn: "16. Tôi không nhớ ra được tên của anh ấy.", zh: "我想不起來他的名字。", p: "Wǒ xiǎng bù qǐlái tā de míngzi." },
+            { vn: "17. Bão đến rồi, hôn lễ tối nay tôi không đi được rồi.", zh: "颱風來了，今晚的婚禮我去不了了。", p: "Táifēng lái le, jīn wǎn de hūnlǐ wǒ qù bù liǎo le." },
+            { vn: "18. Đến bây giờ tôi vẫn không thể quên được người sếp đầu tiên.", zh: "到現在我還忘不了第一個老闆。", p: "Dào xiànzài wǒ hái wàng bù liǎo dì yí ge lǎobǎn." },
+            { vn: "19. Anh ấy có thể ăn được 20 bát cơm!", zh: "他吃得了20碗飯！", p: "Tā chī de liǎo 20 wǎn fàn!" },
+            { vn: "20. Bạn nói rất hay, xin hãy nói tiếp đi.", zh: "你說得很好，請你說下去。", p: "Nǐ shuō de hěn hǎo, qǐng nǐ shuō xiàqù." }
+        ];
+
+        const dialoguePairsData = {
+            questions: [
+                { id: 1, p: "1. Nǐ zěnme hái zài shuìjiào?", h: "1. 你怎麼還在睡覺？", ans: "D" }, // Ghi chú nhập đáp án: Điền chữ cái "A", "B", ... vào biến ans
+                { id: 2, p: "2. Nǐ kànkàn 220 gōngchē dào bù dào Táiběi chēzhàn?", h: "2. 你看看 220 公車到不到台北車站？", ans: "F" },
+                { id: 3, p: "3. Tā xué le yí ge duō yuè, zěnme hái méi xuéhuì?", h: "3. 他學了一個多月，怎麼還沒學會？", ans: "G" },
+                { id: 4, p: "4. Wǒ zhège zhōumò yào shàngbān, bù gēn nǐ qù yùndòng le.", h: "4. 我這個週末要上班，不跟你去運動了。", ans: "H" },
+                { id: 5, p: "5. 220 gōngchē gānggāng zǒu le.", h: "5. 220 公車剛剛走了。", ans: "E" },
+                { id: 6, p: "6. Zhège dàngāo nǐ dài huí jiā ba!", h: "6. 這個蛋糕你帶回家吧！", ans: "C" },
+                { id: 7, p: "7. Gǎnkuài zuò! Zhèxiē zīliào xiàwǔ wǔ diǎn yào gěi lǎobǎn.", h: "7. 趕快做！這些資料下午五點要給老闆。", ans: "A" },
+                { id: 8, p: "8. Tā zěnme le?", h: "8. 他怎麼了？", ans: "B" }
+            ],
+            options: [
+                { letter: "A", p: "Shíjiān tài shǎo le, wǒ yíge rén zuò bù wán.", h: "時間太少了，我一個人做不完。" },
+                { letter: "B", p: "Dǎgōng tài lèi, lèi de shēngbìng le.", h: "打工太累，累得生病了。" },
+                { letter: "C", p: "Tài dà le, wǒ yíge rén chī bù liǎo.", h: "太大了，我一個人吃不了。" },
+                { letter: "D", p: "Wǒ de tóu hǎo tòng, qǐ bù lái.", h: "我的頭好痛，起不來。" },
+                { letter: "E", p: "Wǒ zài gēn péngyǒu shuōhuà, méi kànjiàn!", h: "我在跟朋友說話，沒看見！" },
+                { letter: "F", p: "Shàngmiàn de zì tài xiǎo le, wǒ kàn bù jiàn!", h: "上面的字太小了，我看不見！" },
+                { letter: "G", p: "Kěnéng tīng bù dǒng lǎoshī shuō de huà ba!", h: "可能聽不懂老師說的話吧！" },
+                { letter: "H", p: "Zhège gōngzuò zhème lèi, nǐ zěnme hái zuò de xiàqù.", h: "這個工作這麼累，你怎麼還做得下去。" }
+            ]
+        };
+
+        const listen082Data = [
+            {
+                q: "1.",
+                options: [
+                    { p: "a. Zhè wèi xiānshēng de shēngyīn tài xiǎo.", h: "a. 這位先生的聲音太小。", isCorrect: false }, // Ghi chú nhập đáp án: Đổi false thành true cho đáp án đúng
+                    { p: "b. Zhè wèi xiǎojiě tīngjiàn xiānshēng jiào tā le.", h: "b. 這位小姐聽見先生叫她了。", isCorrect: true },
+                    { p: "c. Zhè wèi xiǎojiě tīng bù jiàn xiānshēng jiào tā.", h: "c. 這位小姐聽不見先生叫她。", isCorrect: false }
+                ]
+            },
+            {
+                q: "2.",
+                options: [
+                    { p: "a. Wáng wén xué tàijíquán yǐjīng xué hěn jiǔ le.", h: "a. 王文學太極拳已經學很久了。", isCorrect: false },
+                    { p: "b. Zhè wèi xiǎojiě yào gēn Wáng wén yīqǐ qù xué tàijíquán.", h: "b. 這位小姐要跟王文一起去學太極拳。", isCorrect: false },
+                    { p: "c. Zhè wèi xiānshēng juéde Wáng wén kěnéng hěn kuài jiù xué bu xià qù le.", h: "c. 這位先生覺得王文可能很快就學不下去了。", isCorrect: true }
+                ]
+            },
+            {
+                q: "3.",
+                options: [
+                    { p: "a. Zhè wèi xiǎojiě zuótiān tuǐ tòng hái qù páshān.", h: "a. 這位小姐昨天腿痛還去爬山。", isCorrect: false },
+                    { p: "b. Zhè wèi xiǎojiě xiànzài zǒulù zǒu de hěn màn.", h: "b. 這位小姐現在走路走得很慢。", isCorrect: true },
+                    { p: "c. Xiànzài zhè wèi xiānshēng hěn jí, yīnwèi yǐjīng shàngkè le.", h: "c. 現在這位先生很急，因為已經上課了。", isCorrect: false }
+                ]
+            },
+            {
+                q: "4.",
+                options: [
+                    { p: "a. Tā xiànzài hěn è.", h: "a. 他現在很餓。", isCorrect: true },
+                    { p: "b. Tā yǐjīng chī le sān wǎn miàn le.", h: "b. 他已經吃了三碗麵了。", isCorrect: false },
+                    { p: "c. Niúròu miàn, zhūjiǎo miànxiàn tā dōu bù xiǎng chī.", h: "c. 牛肉麵、豬腳麵線他都不想吃。", isCorrect: false }
+                ]
+            },
+            {
+                q: "5.",
+                options: [
+                    { p: "a. Tā yǐjīng xiě wán le.", h: "a. 她已經寫完了。", isCorrect: false },
+                    { p: "b. Shíjiān tài shǎo le.", h: "b. 時間太少了。", isCorrect: false },
+                    { p: "c. Gōngkè tài nán le.", h: "c. 功課太難了。", isCorrect: true }
+                ]
+            }
+        ];
+
+        const listen083Data = [
+            { id: 1, p: "1. Zhè wèi xiǎojiě xīngqíwǔ wǎnshàng yào yíge rén chūqù kàn diànyǐng.", h: "1. 這位小姐星期五晚上要一個人出去看電影。", ans: "X" }, // Ghi chú nhập đáp án: Nhập "O" hoặc "X" vào biến ans
+            { id: 2, p: "2. Zhè wèi xiǎojiě yǐqián méi tīng guò yīnyuèhuì.", h: "2. 這位小姐以前沒聽過音樂會。", ans: "X" },
+            { id: 3, p: "3. Zhè wèi xiānshēng běnlái bù zhīdào xiǎojiě bù xǐhuān tīng yīnyuèhuì.", h: "3. 這位先生本來不知道小姐不喜歡聽音樂會。", ans: "O" },
+            { id: 4, p: "4. Zhè wèi xiānshēng bù xiǎng yíge rén qù tīng yīnyuèhuì.", h: "4. 這位先生不想一個人去聽音樂會。", ans: "O" },
+            { id: 5, p: "5. Tāmen xīngqíwǔ kěnéng yīqǐ chūqù kàn diànyǐng.", h: "5. 他們星期五可能一起出去看電影。", ans: "X" }
+        ];
+
+        const listen084Data = [
+            {
+                q: "1.",
+                options: [
+                    { p: "a. Tā yào huānyíng xīn de xuéshēng.", h: "a. 他要歡迎新的學生。", isCorrect: false }, // Ghi chú nhập đáp án: Đổi false thành true cho đáp án đúng
+                    { p: "b. Tā yào gěi xuéshēng jièshào tàijíquán.", h: "b. 他要給學生介紹太極拳。", isCorrect: true },
+                    { p: "c. Tā xīwàng xuéshēng lái xué zhōngguó gōngfu.", h: "c. 他希望學生來學中國功夫。", isCorrect: false }
+                ]
+            },
+            {
+                q: "2.",
+                options: [
+                    { p: "a. Bǐjiào bù róngyì shēngbìng.", h: "a. 比較不容易生病。", isCorrect: true },
+                    { p: "b. Néng rènshì hěn duō gōngfu lǎoshī.", h: "b. 能認識很多功夫老師。", isCorrect: false },
+                    { p: "c. Gōngfu gēn Jackie Chan yíyàng hǎo.", h: "c. 功夫跟 Jackie Chan 一樣好。", isCorrect: false }
+                ]
+            },
+            {
+                q: "3.",
+                options: [
+                    { p: "a. Chén shīfu yǒu hěn duō jiāo gōngfu de jīngyàn.", h: "a. 陳師父有很多教功夫的經驗。", isCorrect: true },
+                    { p: "b. Hěn duō yǒumíng de rén yào gēn Chén shīfu xué gōngfu.", h: "b. 很多有名的人要跟陳師父學功夫。", isCorrect: false },
+                    { p: "c. Hěn duō xuéxiào de lǎoshī yě shì Chén shīfu de xuéshēng.", h: "c. 很多學校的老師也是陳師父的學生。", isCorrect: false }
+                ]
+            },
+            {
+                q: "4.",
+                options: [
+                    { p: "a. Chén shīfu guīdìng yíge xīngqí yào liànxí sān cì.", h: "a. 陳師父規定一個星期要練習三次。", isCorrect: false },
+                    { p: "b. Tāmen yíge xīngqí zài tǐyùguǎn liànxí liǎng cì gōngfu.", h: "b. 他們一個星期在體育館練習兩次功夫。", isCorrect: true },
+                    { p: "c. Tāmen měige xīngqísān zài tǐyùguǎn liànxí liǎng xiǎoshí gōngfu.", h: "c. 他們每個星期三在體育館練習兩小時功夫。", isCorrect: false }
+                ]
+            },
+            {
+                q: "5.",
+                options: [
+                    { p: "a. Yǒu xìngqù de tóngxué gěi dàjiā dǎ tàijíquán.", h: "a. 有興趣的同學給大家打太極拳。", isCorrect: false },
+                    { p: "b. Chén shīfu de xuéshēng gěi dàjiā dǎ tàijíquán.", h: "b. 陳師父的學生給大家打太極拳。", isCorrect: true },
+                    { p: "c. Shuōhuà de zhè wèi xiānshēng gěi dàjiā dǎ tàijíquán.", h: "c. 說話的這位先生給大家打太極拳。", isCorrect: false }
+                ]
+            }
+        ];
+
+        // RENDER LOGIC
+        window.onload = function () {
+            renderVocab();
+            renderMatch();
+            renderGrammar();
+            renderCloze();
+            renderTrans();
+            renderDialoguePairs();
+            renderListenMultipleChoice('listen082-container', listen082Data);
+            renderListen083();
+            renderListenMultipleChoice('listen084-container', listen084Data);
+        };
+
+        function renderVocab() {
+            const container = document.getElementById('vocab-container');
+            vocabList.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "vocab-q border-b pb-8 last:border-0";
+                div.innerHTML = `
+                    <div class="flex items-center gap-4 mb-5">
+                        <span class="bg-blue-100 text-blue-800 font-bold px-5 py-3 rounded-xl text-3xl">${index + 1}</span>
+                        <div class="chinese-ruby">
+                            <span class="pinyin text-5xl">${item.p}</span>
+                            <span class="hanzi text-3xl">${item.h}</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                        ${item.options.map(opt => `
+                            <button onclick="checkAnswer(this, ${opt === item.v})" class="btn-choice">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderMatch() {
+            const leftCol = document.getElementById('chinese-list');
+            const rightCol = document.getElementById('vn-list');
+
+            // Randomize lists
+            const randomizedLeft = [...matchPairs].sort(() => Math.random() - 0.5);
+            const randomizedRight = [...matchPairs].sort(() => Math.random() - 0.5);
+
+            randomizedLeft.forEach(pair => {
+                const btn = document.createElement('button');
+                btn.className = "btn-choice p-4 h-32 flex flex-col items-center justify-center";
+                btn.onclick = (e) => selectPair(btn, 'left', pair.id);
+                btn.innerHTML = `<span class="chinese-ruby"><span class="pinyin">${pair.c}</span><span class="hanzi">${pair.h}</span></span>`;
+                leftCol.appendChild(btn);
+            });
+
+            randomizedRight.forEach(pair => {
+                const btn = document.createElement('button');
+                btn.className = "btn-choice p-4 h-32 flex items-center justify-center font-semibold text-slate-700";
+                btn.onclick = (e) => selectPair(btn, 'right', pair.id);
+                btn.innerText = pair.v;
+                rightCol.appendChild(btn);
+            });
+        }
+
+        function renderGrammar() {
+            const container = document.getElementById('grammar-container');
+            grammarSections.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = "mb-12";
+
+                sectionDiv.innerHTML = `
+                    <h3 class="text-3xl font-bold mb-3 text-blue-700 bg-blue-50 py-3 px-6 rounded-xl inline-block">${section.title}</h3>
+                    <p class="text-slate-600 text-2xl mb-6 px-2 italic">${section.desc}</p>
+                `;
+
+                const qsDiv = document.createElement('div');
+                qsDiv.className = "space-y-8 px-2";
+
+                section.questions.forEach(q => {
+                    const qDiv = document.createElement('div');
+                    qDiv.className = "question border-b pb-8 last:border-0";
+                    qDiv.innerHTML = `
+                        <p class="font-medium text-slate-800 text-3xl mb-4 leading-relaxed">${q.vn}</p>
+                        <div class="bg-blue-50/70 p-6 rounded-2xl mb-6 border border-blue-100">
+                            <div class="text-5xl font-bold text-blue-900 tracking-wide mb-3 leading-relaxed">${q.pinyin}</div>
+                            <div class="text-slate-500 text-3xl">${q.zh}</div>
+                        </div>
+                        <div class="flex flex-wrap gap-5">
+                            ${q.options.map(opt => `
+                                <button onclick="checkAnswer(this, ${opt.c})" class="btn-choice px-8 py-5 flex flex-col items-center min-w-[160px]">
+                                    <span class="pinyin text-5xl font-bold text-blue-800">${opt.p}</span>
+                                    <span class="hanzi text-3xl text-slate-500 mt-2">${opt.h}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    `;
+                    qsDiv.appendChild(qDiv);
+                });
+
+                sectionDiv.appendChild(qsDiv);
+                container.appendChild(sectionDiv);
+            });
+        }
+
+        function renderCloze() {
+            const container = document.getElementById('cloze-container');
+            clozeQs.forEach(q => {
+                const div = document.createElement('div');
+                div.className = "mb-8 text-2xl p-6 bg-gray-50 rounded-2xl border border-gray-200";
+
+                const pParts = q.p.split('___');
+                const hParts = q.h.split('___');
+
+                div.innerHTML = `
+                    <div class="mb-4 flex flex-wrap items-center gap-y-6">
+                        <span class="text-4xl font-bold text-blue-900 tracking-wide leading-relaxed">${q.id}. ${pParts[0]}</span>
+                        <input type="text" data-ans="${q.ans}" data-p-ans="${q.p_ans}" class="border-b-4 border-blue-400 w-64 text-center outline-none bg-transparent font-bold text-blue-700 text-5xl mx-4 placeholder:text-blue-300" placeholder="...">
+                        <span class="text-4xl font-bold text-blue-900 tracking-wide leading-relaxed">${pParts[1]}</span>
+                    </div>
+                    <div class="text-gray-500 text-3xl mb-6">
+                        ${q.id}. ${hParts[0]} ______ ${hParts[1]}
+                    </div>
+                    <div class="text-2xl text-green-700 font-bold italic bg-green-50/80 inline-block px-5 py-3 rounded-xl">Gợi ý: ${q.hint}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderTrans() {
+            const container = document.getElementById('trans-container');
+            transQs.forEach(q => {
+                const div = document.createElement('div');
+                div.className = "border-b pb-8 last:border-0";
+                div.innerHTML = `
+                    <p class="italic text-slate-700 text-3xl font-medium mb-5 leading-relaxed">${q.vn}</p>
+                    <input type="text" class="w-full border-2 border-slate-200 p-6 rounded-2xl focus:border-blue-500 transition-colors outline-none text-4xl font-bold text-blue-900 placeholder:text-3xl placeholder:font-normal placeholder:text-gray-400" placeholder="Pinyin hoặc Chữ Hán...">
+                    <details class="mt-5 group">
+                        <summary class="text-blue-600 cursor-pointer text-2xl font-bold list-none hover:underline flex items-center gap-2">▶ Xem gợi ý đáp án</summary>
+                        <div class="p-8 bg-blue-50/70 border border-blue-100 rounded-2xl mt-5 shadow-inner">
+                            <div class="text-6xl font-bold text-blue-900 tracking-wide mb-4 leading-relaxed">${q.p}</div>
+                            <div class="text-4xl text-slate-500">${q.zh}</div>
+                        </div>
+                    </details>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderDialoguePairs() {
+            const qList = document.getElementById('dialogue-q-list');
+            const optList = document.getElementById('dialogue-opt-list');
+
+            dialoguePairsData.questions.forEach((q, idx) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-5 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
+                div.innerHTML = `
+                    <select data-id="${q.id}" data-ans="${q.ans}" class="border-2 border-blue-200 rounded-xl p-4 text-4xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-28 text-center cursor-pointer flex-shrink-0 bg-blue-50/30 hover:bg-white transition-colors">
+                        <option value=""></option>
+                        ${dialoguePairsData.options.map(opt => `<option value="${opt.letter}">${opt.letter}</option>`).join('')}
+                    </select>
+                    <div class="flex flex-col flex-1 pl-3">
+                        <span class="text-4xl font-bold text-blue-900 tracking-wide mb-2 leading-relaxed">${q.p}</span>
+                        <span class="text-2xl text-slate-500">${q.h}</span>
+                    </div>
+                `;
+                qList.appendChild(div);
+            });
+
+            dialoguePairsData.options.forEach(opt => {
+                const div = document.createElement('div');
+                div.className = "mb-5 flex gap-5 bg-white p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)]";
+                div.innerHTML = `
+                    <span class="text-5xl text-blue-700 font-extrabold flex-shrink-0 mt-1">${opt.letter}.</span>
+                    <div class="flex flex-col flex-1">
+                        <span class="text-3xl font-bold text-blue-800 tracking-wide mb-2 leading-relaxed">${opt.p}</span>
+                        <span class="text-2xl text-slate-500">${opt.h}</span>
+                    </div>
+                `;
+                optList.appendChild(div);
+            });
+        }
+
+        function checkDialoguePairs() {
+            let correctCount = 0;
+            const selects = document.querySelectorAll('#dialogue-q-list select');
+            let hasAnswersSet = false;
+
+            selects.forEach(select => {
+                const val = select.value;
+                const ans = select.getAttribute('data-ans');
+                if (ans !== "") hasAnswersSet = true;
+
+                if (val === ans && ans !== "") {
+                    select.classList.remove('border-red-400', 'bg-red-50');
+                    select.classList.add('border-green-500', 'bg-green-50');
+                    correctCount++;
+                } else if (val !== "") {
+                    select.classList.remove('border-green-500', 'bg-green-50');
+                    select.classList.add('border-red-400', 'bg-red-50');
+                }
+            });
+
+            if (!hasAnswersSet) {
+                showFeedback("Giáo viên chưa nhập đáp án cho phần này 😁", "blue");
+            } else {
+                showFeedback(`Đã kiểm tra! Bạn đúng ${correctCount}/${selects.length}`, correctCount === selects.length ? "green" : "blue");
+            }
+        }
+
+        function renderListenMultipleChoice(containerId, dataArray) {
+            const container = document.getElementById(containerId);
+            dataArray.forEach(q => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "question border-b pb-10 last:border-0";
+                qDiv.innerHTML = `
+                    <p class="font-bold text-slate-800 text-4xl mb-6 bg-blue-100 w-16 h-16 flex items-center justify-center rounded-full text-blue-800">${q.q.replace('.', '')}</p>
+                    <div class="flex flex-col gap-5 pl-4">
+                        ${q.options.map(opt => `
+                            <button onclick="checkMCOption(this, ${opt.isCorrect})" class="btn-choice px-8 py-6 text-left w-full hover:bg-blue-50 transition-colors flex flex-col gap-3 items-start rounded-2xl border-2">
+                                <span class="text-4xl font-bold text-blue-900 tracking-wide leading-relaxed">${opt.p}</span>
+                                <span class="text-2xl text-slate-500">${opt.h}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkMCOption(btn, isCorrect) {
+            const siblings = btn.parentElement.querySelectorAll('button');
+
+            // Check if any option is actually set to true in the data
+            // If the user hasn't set true to ANY option, show fun feedback
+            const containerId = btn.closest('.tab-content').id + '-container';
+            const dataArray = containerId === 'listen082-container' ? listen082Data : listen084Data;
+            const questionIndex = Array.from(btn.closest('.space-y-8').children).indexOf(btn.closest('.question'));
+            let hasTrueOptions = false;
+
+            if (dataArray[questionIndex] && dataArray[questionIndex].options) {
+                hasTrueOptions = dataArray[questionIndex].options.some(o => o.isCorrect === true);
+            }
+
+            if (!hasTrueOptions) {
+                showFeedback("Giáo viên chưa nhập đáp án! 😁", "blue");
+                return;
+            }
+
+            if (isCorrect) {
+                siblings.forEach(b => b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'));
+                btn.classList.add('bg-green-100', 'border-green-500');
+                showFeedback("Chính xác! 🌟", "green");
+            } else {
+                btn.classList.add('bg-red-100', 'border-red-500');
+                showFeedback("Sai rồi, thử lại nhé! ❌", "red");
+                setTimeout(() => {
+                    btn.classList.remove('bg-red-100', 'border-red-500');
+                }, 1000);
+            }
+        }
+
+        function renderListen083() {
+            const container = document.getElementById('listen083-container');
+            listen083Data.forEach((q, idx) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-8 border-b pb-8 pt-5 last:border-0 hover:bg-gray-50 p-6 rounded-2xl transition-colors";
+                div.innerHTML = `
+                    <select data-ans="${q.ans}" class="border-2 border-blue-200 rounded-xl p-5 text-4xl font-extrabold text-blue-700 outline-none focus:border-blue-500 w-32 text-center flex-shrink-0 cursor-pointer bg-blue-50/50">
+                        <option value=""></option>
+                        <option value="O">O</option>
+                        <option value="X">X</option>
+                    </select>
+                    <div class="flex flex-col flex-1 pl-4">
+                        <span class="text-4xl font-bold text-blue-900 tracking-wide mb-2 leading-relaxed">${q.p}</span>
+                        <span class="text-2xl text-slate-500">${q.h}</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function checkListen083() {
+            let correctCount = 0;
+            const selects = document.querySelectorAll('#listen083-container select');
+            let hasAnswersSet = false;
+
+            selects.forEach(select => {
+                const val = select.value;
+                const ans = select.getAttribute('data-ans');
+                if (ans !== "") hasAnswersSet = true;
+
+                if (val === ans && ans !== "") {
+                    select.classList.remove('border-red-400', 'bg-red-50');
+                    select.classList.add('border-green-500', 'bg-green-50');
+                    correctCount++;
+                } else if (val !== "") {
+                    select.classList.remove('border-green-500', 'bg-green-50');
+                    select.classList.add('border-red-400', 'bg-red-50');
+                }
+            });
+
+            if (!hasAnswersSet) {
+                showFeedback("Giáo viên chưa nhập đáp án! 😁", "blue");
+            } else {
+                showFeedback(`Đã kiểm tra! Bạn đúng ${correctCount}/${selects.length}`, correctCount === selects.length ? "green" : "blue");
+            }
+        }
+
+        // INTERACTION SCRIPTS
+        let selectedLeft = null; let selectedRight = null;
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkAnswer(btn, isCorrect) {
+            if (isCorrect) {
+                btn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+                showFeedback("Chính xác! 🌟", "green");
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-500');
+                showFeedback("Sai rồi, thử lại nhé! ❌", "red");
+                setTimeout(() => {
+                    btn.classList.remove('bg-red-500', 'text-white', 'border-red-500');
+                }, 1000);
+            }
+        }
+
+        function selectPair(btn, side, id) {
+            if (side === 'left') {
+                if (selectedLeft) selectedLeft.element.classList.remove('btn-selected');
+                selectedLeft = { element: btn, id: id };
+                btn.classList.add('btn-selected');
+            } else {
+                if (selectedRight) selectedRight.element.classList.remove('btn-selected');
+                selectedRight = { element: btn, id: id };
+                btn.classList.add('btn-selected');
+            }
+
+            if (selectedLeft && selectedRight) {
+                if (selectedLeft.id === selectedRight.id) {
+                    showFeedback("Nối đúng rồi! 🎉", "green");
+                    selectedLeft.element.style.visibility = 'hidden';
+                    selectedRight.element.style.visibility = 'hidden';
+                } else {
+                    showFeedback("Không khớp! 😅", "red");
+                    const l = selectedLeft.element;
+                    const r = selectedRight.element;
+                    l.classList.add('bg-red-50');
+                    r.classList.add('bg-red-50');
+                    setTimeout(() => {
+                        l.classList.remove('btn-selected', 'bg-red-50');
+                        r.classList.remove('btn-selected', 'bg-red-50');
+                    }, 500);
+                }
+                selectedLeft = null; selectedRight = null;
+            }
+        }
+
+        function checkCloze() {
+            let correctCount = 0;
+            const inputs = document.querySelectorAll('#cloze input');
+            inputs.forEach(input => {
+                const val = input.value.trim().toLowerCase().replace(/\s/g, '');
+                const ans = input.getAttribute('data-ans');
+                const pAns = input.getAttribute('data-p-ans');
+                if (val === ans || val === pAns) {
+                    input.classList.remove('border-red-400', 'bg-red-50');
+                    input.classList.add('border-green-500', 'bg-green-50');
+                    correctCount++;
+                } else {
+                    input.classList.remove('border-green-500', 'bg-green-50');
+                    input.classList.add('border-red-400', 'bg-red-50');
+                }
+            });
+            showFeedback(`Đã kiểm tra! Bạn đúng ${correctCount}/${inputs.length}`, correctCount === inputs.length ? "green" : "blue");
+        }
+
+        function showFeedback(text, color) {
+            const fb = document.getElementById('feedback');
+            fb.innerText = text;
+            fb.style.backgroundColor = color === 'green' ? '#10b981' : (color === 'red' ? '#ef4444' : '#3b82f6');
+            fb.classList.remove('hidden');
+            setTimeout(() => fb.classList.add('hidden'), 2500);
+        }
+    </script>
+</body>
+
+</html>
